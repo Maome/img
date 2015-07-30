@@ -1,0 +1,12 @@
+/* LAYOUT CSS */
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.custom-border {
+    border: 2px solid rgb(68, 68, 68);
+}
+.custom-border:hover {
+    border: 2px solid #CFAB69;
+}
