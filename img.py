@@ -99,11 +99,11 @@ def post_image():
     message is returned. '''
     image_file = request.files['file']
     filename = _save_image_files(image_file)
+    if filename is None:
+        return 'ERROR: Not an image'
     db_cursor.execute('INSERT INTO uploads (ip, filename, shortcode, time)'
             ' VALUES (?,?,?,?);', (str(request.remote_addr), filename,
             filename.split('.')[0], int(time.time())))
-    if filename is None:
-        return 'ERROR: Not an image'
     return 'v/%s' % filename
 
 @app.route('/v/<image>', methods=['GET'])
