@@ -44,12 +44,13 @@ def _generate_filename(filetype):
     # find an unused shortcode
     while True:
         chars = [random.choice(alphanumeric) for _ in range(6)]
+        shortcode = ''.join(chars)
         c = db_cursor.execute("SELECT * FROM uploads"
-                " WHERE shortcode = '%s'" % chars)
+                " WHERE shortcode = '%s'" % shortcode)
         # 0 rows so shortcode is unused
         if not c.fetchall():
             break
-    return ''.join(chars) + '.' + filetype
+    return shortcode + '.' + filetype
 
 def _generate_path(filename):
     ''' Use the app settings to create the path the image will be saved
@@ -57,7 +58,7 @@ def _generate_path(filename):
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     return path
 
-def _create_thumbnail(input_file, filename):
+def _create_thumbnail(input_file, thumbname):
     ''' Create a square thumbnail using the method created by olooney and
     documented at https://gist.github.com/olooney/1601455 '''
     size = (300, 300)
@@ -75,7 +76,7 @@ def _save_image_files(input_file):
     filename = _generate_filename(filetype)
     input_file.save(_generate_path(filename))
     thumbname = 'thumb_' + filename
-    _create_thumbnail(image_file, thumbname)
+    _create_thumbnail(input_file, thumbname)
     return filename
 
 ###############################################################################
