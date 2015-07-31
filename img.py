@@ -41,7 +41,14 @@ def _generate_filename(filetype):
     filenames/ids for the images. '''
     alphanumeric = string.ascii_lowercase
     alphanumeric += string.digits
-    chars = [random.choice(alphanumeric) for _ in range(6)]
+    # find an unused shortcode
+    while True:
+        chars = [random.choice(alphanumeric) for _ in range(6)]
+        c = db_cursor.execute("SELECT * FROM uploads"
+                " WHERE shortcode = '%s'" % chars)
+        # 0 rows so shortcode is unused
+        if not c.fetchall():
+            break
     return ''.join(chars) + '.' + filetype
 
 def _generate_path(filename):
