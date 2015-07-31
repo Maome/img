@@ -4,27 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
     <link rel="stylesheet" href="/static/css/grid.css">
-    <link rel="stylesheet" href="/static/css/custom.css">
+    <link rel="stylesheet" href="/static/css/img.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
-
-    <title>img.preten.se</title>
-     <!-- Latest compiled and minified CSS -->
-     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-
-    <!-- Optional theme -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <!----><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>img.preten.se</title>
   </head>
 
   <body>
@@ -37,13 +26,8 @@
             <span class="glyphicon glyphicon-align-justify"></span>
           </button>
           <a class="navbar-brand" href="/">img.preten.se</a>
-          <!--<button id="uploadButton" type="button" class="btn navbar-btn btn-info" style="margin-left:20px;">
-            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-            upload image
-          </button>-->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-            <!--Disable until fix is found for navbar collapse-->
             <ul class="nav navbar-nav">
               <li>
                 <button id="uploadButton" type="button" class="btn navbar-btn btn-info">
@@ -82,45 +66,11 @@
     </div><!-- /.container -->
 
 
-    <script src="static/dropzone.js"></script>
-    <script>
-        if (!String.prototype.startsWith) {
-            String.prototype.startsWith = function(searchString, position) {
-                position = position || 0;
-                return this.indexOf(searchString, position) === position;
-            };
-        }
-        new Dropzone(document.getElementById("uploadButton"), {
-            url: "post",
-            previewsContainer: false,
-            init: function() {
-                this.on("success", function(file, response){
-                    if (response.startsWith('v/')){
-                        window.location.assign('/');//response);
-                    } else {
-                        alert('Error: ' + response);
-                    }
-                });
-            }
-        });
-
-        new Dropzone(document.body, {
-            url: "post",
-            previewsContainer: false,
-            clickable: false,
-            init: function() {
-                this.on("success", function(file, response){
-                    if (response.startsWith('v/')){
-                        window.location.assign('/');//response);
-                    } else {
-                        alert('Error: ' + response);
-                    }
-                });
-            }
-        });
-        </script>
+    <script src="static/js/dropzone.js"></script>
+    <script src="static/js/img.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   
-  
-    </body>
+  </body>
 </html>
 
